@@ -3,6 +3,7 @@ class Hangman
     def initialize
         @letters = ('a'..'z').to_a
         @word = word.sample
+        @lives = 7
     end
 
     def word 
@@ -27,6 +28,7 @@ class Hangman
     end
 
     def make_guess 
+        if @lives > 0
         puts "enter a letter"
         guess = gets.chomp
 
@@ -36,7 +38,13 @@ class Hangman
         puts "Good Guess!"
        else
         puts "Bad Guess!"
+        @lives -= 1
+        puts "Sorry... you have #{ @lives } lives left. Please try again"
+        make_guess
        end
+    else
+         puts "Game over!"
+    end 
     end
     
     def begin
