@@ -26,17 +26,20 @@ class Hangman
 
     def print_teaser last_guess = nil
 
-        update_teaser = "" unless last.guess = nil
+        update_teaser(last_guess) unless last_guess.nil?
             puts @word_teaser
     end
 
-    def update_teaser
+    def update_teaser last_guess
 
         new_teaser = @word_teaser.split
 
-        new_teaser.each_with_index |letter, index|
-        if letter = '_'
+        new_teaser.each_with_index do|letter, index|
+        if letter = '_' && @word.first[index] == last_guess
+            new_teaser[index] = last_guess
         end
+    end
+    @word_teaser = new_teaser.join(' ')
     end
 
 
@@ -52,7 +55,7 @@ class Hangman
 
         @correct_guesses << guess
 
-        @letter.delete guess
+        @letters.delete guess
 
         print_teaser guess
         make_guess
