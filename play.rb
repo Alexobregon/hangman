@@ -50,15 +50,23 @@ class Hangman
 
        good_guess = @word.first.include? guess
 
-       if good_guess
+       if guess == "exit"
+        puts "Thank you for playing"
+
+    elsif guess.length > 1
+        puts "only guess 1 letter at a time please!"
+          make_guess
+
+       elsif good_guess
         puts "You are correct!"
 
-        @correct_guesses << guess
-
-        @letters.delete guess
-
         print_teaser guess
+
+        if @word.first == @word_teaser.split.join
+            puts "Congratulations, you win!"
+        else
         make_guess
+        end
        else
         puts "Bad Guess!"
         @lives -= 1
@@ -73,6 +81,7 @@ class Hangman
     def begin
         
         puts "new game started... your clue is #{ @word.first.size } characters long"
+        puts "To exit game at any point type 'exit'"
         print_teaser
 
         puts "Clue: #{ @word.last }"
