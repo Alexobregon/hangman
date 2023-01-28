@@ -47,18 +47,19 @@ class Hangman
         if @lives > 0
         puts "enter a letter"
         guess = gets.chomp
-
        good_guess = @word.first.include? guess
-
        if guess == "exit"
         puts "Thank you for playing"
+
+       elsif guess == @word.first
+            puts "Correctly guessed Word!, you Win!"
 
     elsif guess.length > 1
         puts "only guess 1 letter at a time please!"
           make_guess
 
        elsif good_guess
-        puts "You are correct!"
+        puts "You currectly guess a letter!"
 
         print_teaser guess
 
@@ -73,6 +74,7 @@ class Hangman
         puts "Sorry... you have #{ @lives } lives left. Please try again"
         make_guess
        end
+    
     else
          puts "Game over!"
     end 
