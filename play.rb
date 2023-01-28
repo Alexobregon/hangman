@@ -4,6 +4,12 @@ class Hangman
         @letters = ('a'..'z').to_a
         @word = word.sample
         @lives = 7
+        @correct_guesses = []
+        @word_teaser = ""
+
+        @word.first.size.times do
+            @word_teaser += "_ "
+            end
     end
 
     def word 
@@ -18,14 +24,21 @@ class Hangman
 
     end
 
-    def print_teaser
-        word_teaser = ""
-        @word.first.size.times do
-            word_teaser += "_ "
-            end
-    
-            puts word_teaser
+    def print_teaser last_guess = nil
+
+        update_teaser = "" unless last.guess = nil
+            puts @word_teaser
     end
+
+    def update_teaser
+
+        new_teaser = @word_teaser.split
+
+        new_teaser.each_with_index |letter, index|
+        if letter = '_'
+        end
+    end
+
 
     def make_guess 
         if @lives > 0
@@ -35,7 +48,14 @@ class Hangman
        good_guess = @word.first.include? guess
 
        if good_guess
-        puts "Good Guess!"
+        puts "You are correct!"
+
+        @correct_guesses << guess
+
+        @letter.delete guess
+
+        print_teaser guess
+        make_guess
        else
         puts "Bad Guess!"
         @lives -= 1
