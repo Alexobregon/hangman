@@ -20,14 +20,12 @@ class Hangman
         ["continent", "There are 7 of these"],
         ["exotic", "Not from around here"],
     ]
-
-
     end
 
     def print_teaser last_guess = nil
 
         update_teaser(last_guess) unless last_guess.nil?
-            puts @word_teaser
+        puts @word_teaser
     end
 
     def update_teaser last_guess
@@ -47,18 +45,18 @@ class Hangman
         if @lives > 0
         puts "enter a letter"
         guess = gets.chomp
-       good_guess = @word.first.include? guess
-       if guess == "exit"
+        good_guess = @word.first.include? guess
+        if guess == "exit"
         puts "Thank you for playing"
 
-       elsif guess == @word.first
+        elsif guess == @word.first
             puts "Correctly guessed Word!, you Win!"
 
-    elsif guess.length > 1
+        elsif guess.length > 1
         puts "only guess 1 letter at a time please!"
           make_guess
 
-       elsif good_guess
+        elsif good_guess
         puts "You currectly guess a letter!"
 
         print_teaser guess
@@ -68,17 +66,17 @@ class Hangman
         else
         make_guess
         end
-       else
+        else
         puts "Bad Guess!"
         @lives -= 1
         puts "Sorry... you have #{ @lives } lives left. Please try again"
         make_guess
-       end
+        end
     
-    else
+        else
          puts "Game over!"
-    end 
-    end
+        end 
+        end
     
     def begin
         
