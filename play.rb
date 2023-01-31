@@ -23,15 +23,12 @@ class Hangman
     end
 
     def print_teaser last_guess = nil
-
         update_teaser(last_guess) unless last_guess.nil?
         puts @word_teaser
     end
 
     def update_teaser last_guess
-
         new_teaser = @word_teaser.split
-
         new_teaser.each_with_index do|letter, index|
         if letter = '_' && @word.first[index] == last_guess
             new_teaser[index] = last_guess
@@ -66,6 +63,7 @@ class Hangman
         else
         make_guess
         end
+
         else
         puts "Bad Guess!"
         @lives -= 1
@@ -76,6 +74,7 @@ class Hangman
         else
          puts "Game over!"
         end 
+
         end
     
     def begin
@@ -83,7 +82,6 @@ class Hangman
         puts "new game started... your clue is #{ @word.first.size } characters long"
         puts "To exit game at any point type 'exit'"
         print_teaser
-
         puts "Clue: #{ @word.last }"
         make_guess
     end
